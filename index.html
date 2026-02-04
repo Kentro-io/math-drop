@@ -45,13 +45,22 @@
     <canvas id="game-canvas"></canvas>
     <div id="combo-display"></div>
     <div id="input-area">
-      <form id="answer-form" action="#" autocomplete="off">
-        <input type="text" id="answer-input" inputmode="numeric" pattern="-?[0-9]*"
-               enterkeyhint="go"
-               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-               placeholder="Type answer…">
-        <button type="submit" id="btn-submit" aria-label="Submit answer">GO</button>
-      </form>
+      <div id="answer-display"><span id="answer-text"></span><span id="answer-cursor">│</span></div>
+      <div id="numpad">
+        <button class="nk" data-k="1">1</button>
+        <button class="nk" data-k="2">2</button>
+        <button class="nk" data-k="3">3</button>
+        <button class="nk" data-k="4">4</button>
+        <button class="nk" data-k="5">5</button>
+        <button class="nk" data-k="6">6</button>
+        <button class="nk" data-k="7">7</button>
+        <button class="nk" data-k="8">8</button>
+        <button class="nk" data-k="9">9</button>
+        <button class="nk nk-neg" data-k="neg">±</button>
+        <button class="nk" data-k="0">0</button>
+        <button class="nk nk-del" data-k="del">⌫</button>
+        <button class="nk nk-go" data-k="go">GO</button>
+      </div>
     </div>
     <div id="level-splash"></div>
     <button id="btn-mute" class="btn-icon" title="Toggle Sound">🔊</button>

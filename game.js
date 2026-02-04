@@ -368,7 +368,9 @@
     constructor() {
       this.canvas  = document.getElementById('game-canvas');
       this.ctx     = this.canvas.getContext('2d');
-      this.input   = document.getElementById('answer-input');
+      this.display = document.getElementById('answer-display');
+      this.displayText = document.getElementById('answer-text');
+      this.inputBuffer = '';
       this.audio   = new AudioEngine();
       this.particles = new ParticleSystem();
       this.floats  = new FloatingTexts();
@@ -432,22 +434,24 @@
         $('btn-mute').textContent = on ? '🔊' : '🔇';
       };
 
-      // Input — form submit handles iOS "Go" button + desktop Enter
-      document.getElementById('answer-form').addEventListener('submit', e => {
+      // Numpad buttons
+      document.getElementById('numpad').addEventListener('pointerdown', e => {
+        const btn = e.target.closest('.nk');
+        if (!btn || this.state !== 'playing') return;
         e.preventDefault();
-        this._submit();
+        const k = btn.dataset.k;
+        this._handleKey(k);
+        // Haptic feedback if available
+        if (navigator.vibrate) navigator.vibrate(12);
       });
-      // Keep explicit keydown for Enter as a fallback
-      this.input.addEventListener('keydown', e => {
-        if (e.key === 'Enter') { e.preventDefault(); this._submit(); }
-      });
-      // Keep focus during play
-      this.input.addEventListener('blur', () => {
-        if (this.state === 'playing') setTimeout(() => this.input.focus(), 50);
-      });
-      // Tap canvas to refocus
-      this.canvas.addEventListener('pointerdown', () => {
-        if (this.state === 'playing') this.input.focus();
+
+      // Desktop keyboard support
+      document.addEventListener('keydown', e => {
+        if (this.state !== 'playing') return;
+        if (e.key >= '0' && e.key <= '9') { this._handleKey(e.key); e.preventDefault(); }
+        else if (e.key === 'Backspace') { this._handleKey('del'); e.preventDefault(); }
+        else if (e.key === '-') { this._handleKey('neg'); e.preventDefault(); }
+        else if (e.key === 'Enter') { this._handleKey('go'); e.preventDefault(); }
       });
     }
 
@@ -477,8 +481,8 @@
       this.state = 'playing';
       this.showScreen('game');
       this._updateHUD();
-      this.input.value = '';
-      this.input.focus();
+      this.inputBuffer = '';
+      this._updateDisplay();
       this._levelSplash();
     }
 
@@ -499,7 +503,6 @@
         this.lvlCorrect = 0; this.lvlMissed = 0;
         this.lvlStart = performance.now();
         this.lastSpawn = performance.now();
-        this.input.focus();
       }, 1800);
     }
 
@@ -516,10 +519,33 @@
       this.problems.push(new FallingProblem(text, answer, x, color));
     }
 
+    // ── Numpad Key Handler ──
+    _handleKey(k) {
+      if (k === 'go') { this._submit(); return; }
+      if (k === 'del') {
+        this.inputBuffer = this.inputBuffer.slice(0, -1);
+        // If only "-" left and we deleted the digit, clear it
+        if (this.inputBuffer === '-') this.inputBuffer = '';
+      } else if (k === 'neg') {
+        if (this.inputBuffer.startsWith('-')) this.inputBuffer = this.inputBuffer.slice(1);
+        else if (this.inputBuffer.length < 5) this.inputBuffer = '-' + this.inputBuffer;
+      } else {
+        // Digit — max 4 digits (plus optional minus)
+        const digits = this.inputBuffer.replace('-', '');
+        if (digits.length < 4) this.inputBuffer += k;
+      }
+      this._updateDisplay();
+    }
+
+    _updateDisplay() {
+      this.displayText.textContent = this.inputBuffer;
+    }
+
     // ── Submit Answer ──
     _submit() {
-      const raw = this.input.value.trim();
-      this.input.value = '';
+      const raw = this.inputBuffer.trim();
+      this.inputBuffer = '';
+      this._updateDisplay();
       if (!raw) return;
       const num = parseInt(raw, 10);
       if (isNaN(num)) return;
@@ -558,9 +584,9 @@
       this.audio.correct();
       if (this.combo > 1) this.audio.combo(this.combo);
 
-      // Input flash
-      this.input.classList.add('correct');
-      setTimeout(() => this.input.classList.remove('correct'), 250);
+      // Display flash
+      this.display.classList.add('correct');
+      setTimeout(() => this.display.classList.remove('correct'), 250);
 
       // Score bump
       const sc = document.getElementById('hud-score');
@@ -579,8 +605,8 @@
       this.totalWrong++;
       this.audio.wrong();
       this.shakeT = 0.35;
-      this.input.classList.add('wrong');
-      setTimeout(() => this.input.classList.remove('wrong'), 400);
+      this.display.classList.add('wrong');
+      setTimeout(() => this.display.classList.remove('wrong'), 400);
     }
 
     _onMiss(p) {

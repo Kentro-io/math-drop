@@ -273,89 +273,123 @@ html, body {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* ── Input Area ──────────────────────────── */
+/* ── Input Area & Numpad ─────────────────── */
 #input-area {
-  padding: 8px 16px 16px;
+  padding: 6px 10px 10px;
   z-index: 5;
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(10, 14, 26, 0.97);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   flex-shrink: 0;
 }
 
-#answer-form {
+#answer-display {
+  text-align: center;
+  padding: 8px 16px;
+  margin-bottom: 6px;
+  min-height: 38px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  font-family: 'Orbitron', monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.12em;
   display: flex;
-  gap: 8px;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+#answer-text:empty + #answer-cursor { opacity: 0.25; }
+#answer-cursor {
+  color: var(--cyan);
+  font-weight: 400;
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 1px;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; } 50% { opacity: 0; }
+}
+#answer-display.correct {
+  border-color: var(--green) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.25) !important;
+  background: rgba(0, 255, 136, 0.06) !important;
+}
+#answer-display.wrong {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 20px rgba(255, 59, 59, 0.25) !important;
+  background: rgba(255, 59, 59, 0.06) !important;
+  animation: shake 0.4s ease;
 }
 
-#answer-input {
-  flex: 1;
-  min-width: 0;
-  padding: 14px 20px;
-  border: 2px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+#numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.nk {
+  height: 46px;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.04);
   color: white;
   font-family: 'Orbitron', monospace;
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  text-align: center;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  -webkit-appearance: none;
-  letter-spacing: 0.1em;
-}
-
-#btn-submit {
-  padding: 14px 20px;
-  border: 2px solid rgba(0, 229, 255, 0.4);
-  border-radius: 14px;
-  background: rgba(0, 229, 255, 0.1);
-  color: var(--cyan);
-  font-family: 'Orbitron', monospace;
-  font-size: 1.1rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
   cursor: pointer;
   -webkit-appearance: none;
-  transition: all 0.15s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.08);
+  transition: all 0.1s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
-#btn-submit:hover {
-  background: rgba(0, 229, 255, 0.2);
+.nk:active {
+  transform: scale(0.93);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.nk-neg {
+  color: var(--cyan);
+  border-color: rgba(0, 229, 255, 0.15);
+}
+.nk-neg:active {
+  background: rgba(0, 229, 255, 0.12);
+  border-color: rgba(0, 229, 255, 0.4);
+}
+
+.nk-del {
+  color: var(--orange);
+  border-color: rgba(255, 140, 0, 0.15);
+  font-size: 1.2rem;
+}
+.nk-del:active {
+  background: rgba(255, 140, 0, 0.12);
+  border-color: rgba(255, 140, 0, 0.4);
+}
+
+.nk-go {
+  grid-column: 1 / -1;
+  height: 48px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(180, 77, 255, 0.15), rgba(255, 45, 117, 0.15));
+  border-color: rgba(0, 229, 255, 0.3);
+  color: var(--cyan);
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+}
+.nk-go:active {
+  transform: scale(0.97);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(180, 77, 255, 0.3), rgba(255, 45, 117, 0.3));
   border-color: rgba(0, 229, 255, 0.6);
-  box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
-}
-#btn-submit:active {
-  transform: scale(0.95);
-  background: rgba(0, 229, 255, 0.3);
-}
-#answer-input::placeholder {
-  color: rgba(255, 255, 255, 0.15);
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-}
-#answer-input:focus {
-  border-color: rgba(0, 229, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
-}
-#answer-input.correct {
-  border-color: var(--green) !important;
-  box-shadow: 0 0 25px rgba(0, 255, 136, 0.25) !important;
-  background: rgba(0, 255, 136, 0.06) !important;
-}
-#answer-input.wrong {
-  border-color: var(--danger) !important;
-  box-shadow: 0 0 25px rgba(255, 59, 59, 0.25) !important;
-  background: rgba(255, 59, 59, 0.06) !important;
-  animation: shake 0.4s ease;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
 }
 
 /* ── Level Splash ────────────────────────── */
@@ -603,9 +637,10 @@ html, body {
   #hud-lives { font-size: 1rem; min-width: 70px; }
   #hud-score { font-size: 0.95rem; min-width: 70px; }
   #hud-level { font-size: 0.6rem; }
-  #answer-input { font-size: 1.2rem; padding: 12px 16px; }
-  #btn-submit { font-size: 0.95rem; padding: 12px 16px; }
-  #input-area { padding: 6px 10px 10px; }
+  #answer-display { font-size: 1.3rem; padding: 6px 12px; min-height: 34px; }
+  #input-area { padding: 4px 8px 8px; }
+  .nk { height: 42px; font-size: 1.05rem; }
+  .nk-go { height: 44px; }
   .btn-primary, .btn-secondary { width: 200px; padding: 0.75rem 1.5rem; font-size: 0.8rem; }
   #badge-notification { width: 240px; }
   .badge-notif-icon { font-size: 1.3rem; }
@@ -614,7 +649,7 @@ html, body {
 
 /* Safe areas for notched phones */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
-  #input-area { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+  #input-area { padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
   #game-hud { padding-top: calc(8px + env(safe-area-inset-top)); }
   #screen-title { padding-top: env(safe-area-inset-top); }
 }
