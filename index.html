@@ -93,8 +93,15 @@
 
   <script src="game.js"></script>
   <script>
+    // Unregister any existing SW (was causing stale cache issues)
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(r => r.unregister());
+      });
+      // Also nuke any leftover caches
+      if ('caches' in window) {
+        caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+      }
     }
   </script>
 </body>
