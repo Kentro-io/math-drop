@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Math Drop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+  <!-- PWA -->
+  <meta name="description" content="A fast-paced falling math game — solve equations before they hit the bottom!">
+  <meta name="theme-color" content="#0a0e1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Math Drop">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+
+  <!-- ═══ Title Screen ═══ -->
+  <div id="screen-title" class="screen active">
+    <div class="bg-glow"></div>
+    <div class="title-content">
+      <div class="game-title">MATH<span>DROP</span></div>
+      <p class="subtitle">Solve before they fall!</p>
+      <div id="high-score" class="high-score"></div>
+      <button id="btn-start" class="btn-primary">START GAME</button>
+      <button id="btn-badges" class="btn-secondary">🏆 ACHIEVEMENTS</button>
+    </div>
+  </div>
+
+  <!-- ═══ Game Screen ═══ -->
+  <div id="screen-game" class="screen">
+    <div id="game-hud">
+      <div id="hud-lives">❤️❤️❤️❤️❤️</div>
+      <div id="hud-center">
+        <div id="hud-level">LEVEL 1</div>
+        <div id="level-progress"><div id="level-progress-bar"></div></div>
+      </div>
+      <div id="hud-score">0</div>
+    </div>
+    <canvas id="game-canvas"></canvas>
+    <div id="combo-display"></div>
+    <div id="input-area">
+      <input type="text" id="answer-input" inputmode="numeric" pattern="-?[0-9]*"
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="Type answer & press Enter">
+    </div>
+    <div id="level-splash"></div>
+    <button id="btn-mute" class="btn-icon" title="Toggle Sound">🔊</button>
+  </div>
+
+  <!-- ═══ Game Over Screen ═══ -->
+  <div id="screen-gameover" class="screen">
+    <div class="bg-glow"></div>
+    <div class="gameover-content">
+      <h2 id="gameover-title">GAME OVER</h2>
+      <div id="final-score"></div>
+      <div id="final-stats"></div>
+      <div id="badges-earned"></div>
+      <button id="btn-restart" class="btn-primary">PLAY AGAIN</button>
+      <button id="btn-menu" class="btn-secondary">MAIN MENU</button>
+    </div>
+  </div>
+
+  <!-- ═══ Badges Screen ═══ -->
+  <div id="screen-badges" class="screen">
+    <div class="badges-content">
+      <h2>🏆 ACHIEVEMENTS</h2>
+      <div id="badges-grid"></div>
+      <button id="btn-badges-back" class="btn-secondary">BACK</button>
+    </div>
+  </div>
+
+  <!-- ═══ Badge Notification Toast ═══ -->
+  <div id="badge-notification"></div>
+
+  <script src="game.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
