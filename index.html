@@ -45,9 +45,13 @@
     <canvas id="game-canvas"></canvas>
     <div id="combo-display"></div>
     <div id="input-area">
-      <input type="text" id="answer-input" inputmode="numeric" pattern="-?[0-9]*"
-             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-             placeholder="Type answer & press Enter">
+      <form id="answer-form" action="#" autocomplete="off">
+        <input type="text" id="answer-input" inputmode="numeric" pattern="-?[0-9]*"
+               enterkeyhint="go"
+               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+               placeholder="Type answer…">
+        <button type="submit" id="btn-submit" aria-label="Submit answer">GO</button>
+      </form>
     </div>
     <div id="level-splash"></div>
     <button id="btn-mute" class="btn-icon" title="Toggle Sound">🔊</button>

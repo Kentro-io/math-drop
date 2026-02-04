@@ -432,7 +432,12 @@
         $('btn-mute').textContent = on ? '🔊' : '🔇';
       };
 
-      // Input
+      // Input — form submit handles iOS "Go" button + desktop Enter
+      document.getElementById('answer-form').addEventListener('submit', e => {
+        e.preventDefault();
+        this._submit();
+      });
+      // Keep explicit keydown for Enter as a fallback
       this.input.addEventListener('keydown', e => {
         if (e.key === 'Enter') { e.preventDefault(); this._submit(); }
       });
