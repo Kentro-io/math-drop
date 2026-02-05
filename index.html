@@ -26,9 +26,50 @@
     <div class="title-content">
       <div class="game-title">MATH<span>DROP</span></div>
       <p class="subtitle">Solve before they fall!</p>
+
+      <!-- Player Selector -->
+      <div id="player-bar">
+        <button id="btn-switch-player" class="player-chip">
+          <span id="current-avatar">🧑</span>
+          <span id="current-name">Player 1</span>
+          <span class="chip-arrow">▾</span>
+        </button>
+      </div>
+
+      <!-- Grade Selector -->
+      <div id="grade-selector">
+        <div class="grade-label">DIFFICULTY</div>
+        <div id="grade-cards"></div>
+      </div>
+
       <div id="high-score" class="high-score"></div>
       <button id="btn-start" class="btn-primary">START GAME</button>
       <button id="btn-badges" class="btn-secondary">🏆 ACHIEVEMENTS</button>
+    </div>
+  </div>
+
+  <!-- ═══ Player Select Screen ═══ -->
+  <div id="screen-players" class="screen">
+    <div class="bg-glow"></div>
+    <div class="players-content">
+      <h2>👥 PLAYERS</h2>
+      <div id="players-list"></div>
+      <button id="btn-add-player" class="btn-secondary">+ ADD PLAYER</button>
+      <button id="btn-players-back" class="btn-secondary" style="margin-top:0.5rem">BACK</button>
+    </div>
+  </div>
+
+  <!-- ═══ Add/Edit Player Screen ═══ -->
+  <div id="screen-add-player" class="screen">
+    <div class="bg-glow"></div>
+    <div class="add-player-content">
+      <h2 id="add-player-title">NEW PLAYER</h2>
+      <div id="avatar-picker"></div>
+      <div class="name-input-wrap">
+        <input type="text" id="player-name-input" placeholder="Name" maxlength="12" autocomplete="off" spellcheck="false">
+      </div>
+      <button id="btn-save-player" class="btn-primary">SAVE</button>
+      <button id="btn-cancel-player" class="btn-secondary">CANCEL</button>
     </div>
   </div>
 
@@ -98,7 +139,6 @@
       navigator.serviceWorker.getRegistrations().then(regs => {
         regs.forEach(r => r.unregister());
       });
-      // Also nuke any leftover caches
       if ('caches' in window) {
         caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
       }
