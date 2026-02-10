@@ -1,8 +1,8 @@
-# 🧮 Math Drop
+# 🧠 BrainDrop
 
-**An open-source math game that teaches kids the skill AI can't replace: problem solving.**
+**Open-source mini-games that teach kids the skill AI can't replace: problem solving.**
 
-🎮 **[Play now](https://kentro-io.github.io/math-drop)** — works on any device, no install needed.
+🎮 **[Play now](https://kentro-io.github.io/braindrop)** — works on any device, no install needed.
 
 ---
 
@@ -12,23 +12,14 @@ AI can write essays, generate code, and pass exams. But it can't think through a
 
 In a world where AI handles the routine, the kids who thrive will be the ones who can **break down problems, think fast, and find patterns**. That's not memorization. That's problem solving under pressure.
 
-Math Drop trains exactly that. Equations fall from the sky. Solve them before they hit the ground. Start easy, get fast. Your brain builds pathways that no chatbot can build for you.
+BrainDrop is a growing collection of mini-games that train exactly that. Each game targets a different aspect of problem solving — mental math, pattern recognition, logic, memory, estimation. They feel like games, not homework. And they build the kind of thinking that no AI can do for you.
 
-**This is the most valuable skill your kid can practice in the age of AI.** And it feels like a game, not homework.
+**This is the most valuable skill your kid can practice in the age of AI.**
 
-## How It Works
+## 🎮 Games
 
-🎯 **Falling equations** — math problems drop from the top of the screen. Type the answer before they reach the bottom.
-
-📈 **10 levels per grade** — starts gentle, gets intense. Speed increases, numbers get bigger, operations get harder.
-
-👶 **Pre-K through 5th Grade** — age-appropriate progression from counting (`1 + 2`) to multi-step problems (`144 ÷ 12`).
-
-👨‍👩‍👧‍👦 **Multi-user profiles** — siblings can each have their own avatar, grade level, and progress. No accounts needed, everything stays on device.
-
-📱 **Works everywhere** — phone, tablet, laptop, Chromebook. Install as a PWA for offline play. Zero ads, zero tracking, zero data collection.
-
-## Grades & Progression
+### 🧮 Math Drop *(live now)*
+Equations fall from the sky. Solve them before they hit the ground. Covers Pre-K through 5th grade with 10 levels per grade. Starts with `1 + 2`, ends with `144 ÷ 12`.
 
 | Grade | Ages | What They Learn |
 |-------|------|----------------|
@@ -40,18 +31,47 @@ Math Drop trains exactly that. Equations fall from the sky. Solve them before th
 | 🏔️ 4th Grade | 9-10 | Multi-digit operations, larger numbers |
 | 🚀 5th Grade | 10-11 | All operations, speed and complexity |
 
-Each grade has 10 levels that progressively increase speed, number range, and active equations.
+### 🔮 Coming Soon
+
+These are the mini-games we want to build next. Each one targets a different problem-solving skill:
+
+- **🧩 Pattern Drop** — Falling shape and color sequences. Spot the pattern, complete it before it lands. Trains pattern recognition, the foundation of all logical thinking.
+
+- **🔤 Word Drop** — Scrambled letters fall from the top. Unscramble them into real words before time runs out. Builds mental flexibility and vocabulary under pressure.
+
+- **🧠 Memory Drop** — A sequence flashes briefly on screen, then disappears. Recreate it from memory. Progressively longer sequences that stretch working memory.
+
+- **🔀 Logic Drop** — Simple rule-based puzzles: "if red, swipe left; if blue, swipe right; if green, tap twice." Rules change every few levels. Trains conditional thinking — the same skill behind programming and debugging.
+
+- **📐 Estimate Drop** — How many dots? How long is this line? How heavy is this object? Make your best guess before the timer runs out. Builds number sense and spatial reasoning.
+
+- **🧱 Code Drop** — Drag-and-drop code blocks to guide a character through a maze. No syntax, just logic. Sequence, loops, and conditionals as puzzle pieces. Intro to computational thinking.
+
+Want to build one of these? Jump into [Contributing](#get-involved).
+
+## 👨‍👩‍👧‍👦 Features
+
+- **Multi-user profiles** — siblings each get their own avatar, grade level, and progress
+- **Works everywhere** — phone, tablet, laptop, Chromebook
+- **Install as PWA** — offline play, feels like a native app
+- **Zero ads, zero tracking** — no data collection, ever
+- **No accounts needed** — everything stays on device
 
 ## Get Involved
 
-This is open source because every kid deserves access to quality learning tools, not just kids whose parents can afford app subscriptions.
+Math Drop is just the beginning. BrainDrop is designed to become a full arcade of brain-building mini-games, and we need help making that happen.
 
-**Ways to contribute:**
-- 🎨 **Design** — better animations, themes, accessibility improvements
+**Build a new game:**
+The architecture is intentionally simple (vanilla JS, no frameworks) so anyone can contribute. Pick a game from the "Coming Soon" list above, or pitch your own. Each game is self-contained — you don't need to understand the whole codebase.
+
+**Other ways to contribute:**
+- 🎨 **Design** — animations, themes, accessibility, sound effects
 - 🧮 **Content** — new grade levels (6th+), word problems, fractions, decimals
-- 🌍 **Localization** — translate to other languages
+- 🌍 **Localization** — translate to other languages so more kids can play
 - 🐛 **Bug fixes** — find something broken? PRs welcome
 - 💡 **Ideas** — open an issue with your feature suggestion
+
+The goal is simple: every kid on earth should have access to free, high-quality tools that make them better thinkers. No paywalls, no subscriptions, no "premium tiers."
 
 ## Tech Stack
 
@@ -65,9 +85,8 @@ Pure vanilla JS, HTML, CSS. No frameworks, no build step, no dependencies. Open 
 ## Run Locally
 
 ```bash
-git clone https://github.com/Kentro-io/math-drop.git
-cd math-drop
-# Open index.html in any browser. That's it.
+git clone https://github.com/Kentro-io/braindrop.git
+cd braindrop
 open index.html
 ```
 
@@ -81,5 +100,5 @@ MIT — use it, fork it, put it in your school, teach your kids, teach other peo
 
 <p align="center">
   Built with ❤️ by <a href="https://kentro.io">Kentro</a><br>
-  <sub>We build operations software for e-commerce. This is our way of giving back.</sub>
+  <sub>We build operations software for e-commerce. BrainDrop is our way of giving back.</sub>
 </p>
