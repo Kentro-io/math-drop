@@ -1,8 +1,8 @@
-# 🧠 BrainDrop
+# 🧠 MindLab
 
 **Open-source mini-games that teach kids the skill AI can't replace: problem solving.**
 
-🎮 **[Play now](https://kentro-io.github.io/braindrop)** — works on any device, no install needed.
+🎮 **[Play now](https://kentro-io.github.io/mindlab)** — works on any device, no install needed.
 
 ---
 
@@ -12,7 +12,7 @@ AI can write essays, generate code, and pass exams. But it can't think through a
 
 In a world where AI handles the routine, the kids who thrive will be the ones who can **break down problems, think fast, and find patterns**. That's not memorization. That's problem solving under pressure.
 
-BrainDrop is a growing collection of mini-games that train exactly that. Each game targets a different aspect of problem solving — mental math, pattern recognition, logic, memory, estimation. They feel like games, not homework. And they build the kind of thinking that no AI can do for you.
+MindLab is a growing collection of mini-games that train exactly that. Each game targets a different aspect of problem solving — mental math, pattern recognition, logic, memory, estimation. They feel like games, not homework. And they build the kind of thinking that no AI can do for you.
 
 **This is the most valuable skill your kid can practice in the age of AI.**
 
@@ -59,7 +59,7 @@ Want to build one of these? Jump into [Contributing](#get-involved).
 
 ## Get Involved
 
-Math Drop is just the beginning. BrainDrop is designed to become a full arcade of brain-building mini-games, and we need help making that happen.
+Math Drop is just the beginning. MindLab is designed to become a full arcade of brain-building mini-games, and we need help making that happen.
 
 **Build a new game:**
 The architecture is intentionally simple (vanilla JS, no frameworks) so anyone can contribute. Pick a game from the "Coming Soon" list above, or pitch your own. Each game is self-contained — you don't need to understand the whole codebase.
@@ -85,8 +85,8 @@ Pure vanilla JS, HTML, CSS. No frameworks, no build step, no dependencies. Open 
 ## Run Locally
 
 ```bash
-git clone https://github.com/Kentro-io/braindrop.git
-cd braindrop
+git clone https://github.com/Kentro-io/mindlab.git
+cd mindlab
 open index.html
 ```
 
@@ -100,5 +100,5 @@ MIT — use it, fork it, put it in your school, teach your kids, teach other peo
 
 <p align="center">
   Built with ❤️ by <a href="https://kentro.io">Kentro</a><br>
-  <sub>We build operations software for e-commerce. BrainDrop is our way of giving back.</sub>
+  <sub>We build operations software for e-commerce. MindLab is our way of giving back.</sub>
 </p>
